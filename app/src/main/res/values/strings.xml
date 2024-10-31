@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">15_3_tablayout</string>
+    <string name="app_name">15_4_Contacts</string>
     <string name="toolbarTitle">Контакты</string>
     <string name="exit">Выход</string>
 </resources>
