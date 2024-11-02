@@ -10,50 +10,58 @@
     <include layout="@layout/toolbar" />
 
     <EditText
-        android:id="@+id/editTextLastName"
-        android:layout_width="0dp"
+        android:id="@+id/nameET"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Фамилия"
+        android:autofillHints=""
+        android:hint="@string/nameET_hint"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
-        android:id="@+id/editTextPhoneNumber"
-        android:layout_width="0dp"
+        android:id="@+id/phoneET"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Номер телефона"
+        android:autofillHints=""
+        android:hint="@string/phoneET_hint"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/nameET" />
 
     <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
+        android:id="@+id/saveBTN"
+        android:layout_width="@dimen/minWidthET"
         android:layout_height="wrap_content"
-        android:text="Сохранить"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_margin="@dimen/defMargin"
+        android:text="@string/saveBTN_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneET" />
 
     <Button
-        android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
+        android:id="@+id/delBTN"
+        android:layout_width="@dimen/minWidthET"
         android:layout_height="wrap_content"
-        android:text="Удалить всё"
-        app:layout_constraintStart_toEndOf="@+id/buttonSave"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" />
+        android:layout_margin="@dimen/defMargin"
+        android:text="@string/delBTN_text"
+        app:layout_constraintStart_toEndOf="@+id/saveBTN"
+        app:layout_constraintTop_toBottomOf="@+id/phoneET" />
 
     <TextView
-        android:id="@+id/textViewContacts"
+        android:id="@+id/contactsTV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Контакты"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSave"
+        android:layout_marginTop="@dimen/defMargin"
+        android:hint="@string/toolbarTitle"
+        android:lineSpacingExtra="8sp"
+        android:padding="@dimen/defPadding"
+        android:scrollbars="vertical"
+        android:textSize="@dimen/textSize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:padding="16dp"
-        android:scrollbars="vertical"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saveBTN" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

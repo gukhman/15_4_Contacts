@@ -4,19 +4,18 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MainActivity : BaseActivity() {
 
     var db: AppDatabase? = null
 
-    private lateinit var editTextLastName: EditText
-    private lateinit var editTextPhoneNumber: EditText
-    private lateinit var buttonSave: Button
-    private lateinit var buttonDelete: Button
-    private lateinit var textViewContacts: TextView
+    private lateinit var nameET: EditText
+    private lateinit var phoneET: EditText
+    private lateinit var saveBTN: Button
+    private lateinit var delBTN: Button
+    private lateinit var contactsTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,45 +24,52 @@ class MainActivity : BaseActivity() {
         setupToolbar(R.id.toolbar, false)
 
         db = AppDatabase.getDatabase(this)
-        readDatabase(db!!)
+        refreshContacts(db!!)
 
-        editTextLastName = findViewById(R.id.editTextLastName)
-        editTextPhoneNumber = findViewById(R.id.editTextPhoneNumber)
-        buttonSave = findViewById(R.id.buttonSave)
-        buttonDelete = findViewById(R.id.buttonDelete)
-        textViewContacts = findViewById(R.id.textViewContacts)
+        nameET = findViewById(R.id.nameET)
+        phoneET = findViewById(R.id.phoneET)
+        saveBTN = findViewById(R.id.saveBTN)
+        delBTN = findViewById(R.id.delBTN)
+        contactsTV = findViewById(R.id.contactsTV)
     }
 
     override fun onResume() {
         super.onResume()
 
-        buttonSave.setOnClickListener {
+        saveBTN.setOnClickListener {
             val contact =
-                Contact(0, editTextLastName.text.toString(), editTextPhoneNumber.text.toString())
+                Contact(0, nameET.text.toString(), phoneET.text.toString())
             addContact(db!!, contact)
-            readDatabase(db!!)
         }
 
-        buttonDelete.setOnClickListener {
-            delete(db!!)
-            textViewContacts.text = ""
+        delBTN.setOnClickListener {
+            deleteAllContacts(db!!)
         }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun delete(db: AppDatabase) = GlobalScope.async() {
-        db.getContactDao().deleteAll()
+    fun deleteAllContacts(db: AppDatabase) {
+        lifecycleScope.launch {
+            db.getContactDao().deleteAll()
+            refreshContacts(db)
+        }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun addContact(db: AppDatabase, contact: Contact) = GlobalScope.async() {
-        db.getContactDao().insert(contact)
+    fun addContact(db: AppDatabase, contact: Contact) {
+        lifecycleScope.launch {
+            if (contact.lastName.length > 1 && contact.phoneNumber.isNotEmpty()) {
+                db.getContactDao().insert(contact)
+                refreshContacts(db)
+            }
+        }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
-    fun readDatabase(db: AppDatabase) = GlobalScope.async() {
-        textViewContacts.text = ""
-        val list = db.getContactDao().getAllContacts()
-        list.forEach { i -> textViewContacts.append("${i.lastName} ${i.phoneNumber}\n") }
+    fun refreshContacts(db: AppDatabase) {
+        lifecycleScope.launch {
+            val contacts = db.getContactDao().getAllContacts()
+            nameET.setText("")
+            phoneET.setText("")
+            contactsTV.text = ""
+            contacts.forEach { i -> contactsTV.append("${i.lastName}    ${i.phoneNumber}\n") }
+        }
     }
 }

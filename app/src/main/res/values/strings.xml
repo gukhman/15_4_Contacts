@@ -2,4 +2,8 @@
     <string name="app_name">15_4_Contacts</string>
     <string name="toolbarTitle">Контакты</string>
     <string name="exit">Выход</string>
+    <string name="nameET_hint">ФИО</string>
+    <string name="phoneET_hint">Номер телефона</string>
+    <string name="saveBTN_text">Сохранить</string>
+    <string name="delBTN_text">Удалить всё</string>
 </resources>
