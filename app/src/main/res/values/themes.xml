@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme._15_4_Contacts" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Цвет для тулбара -->

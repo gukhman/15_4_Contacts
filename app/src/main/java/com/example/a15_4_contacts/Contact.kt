@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Contact(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "phone") val phone: String
+    @ColumnInfo(name = "phone") val phone: String,
+    @ColumnInfo(name = "time") val time: String
 )

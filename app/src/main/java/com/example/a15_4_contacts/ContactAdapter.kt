@@ -22,11 +22,13 @@ class ContactAdapter(private val context: Context, private val listener: Contact
     inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTV: TextView = itemView.findViewById(R.id.nameTV)
         private val phoneTV: TextView = itemView.findViewById(R.id.phoneTV)
+        private val timeTV: TextView = itemView.findViewById(R.id.timeTV)
         val imageButton: ImageButton = itemView.findViewById(R.id.imageButton)
 
         fun bind(contact: Contact) {
             nameTV.text = contact.name
             phoneTV.text = contact.phone
+            timeTV.text = contact.time
         }
     }
 

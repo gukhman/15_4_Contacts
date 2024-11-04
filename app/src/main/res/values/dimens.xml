@@ -6,4 +6,5 @@
     <dimen name="minWidthET">200sp</dimen>
     <dimen name="minHeightET">48sp</dimen>
     <dimen name="defPadding">8dp</dimen>
+    <dimen name="smallTextSize">14sp</dimen>
 </resources>
