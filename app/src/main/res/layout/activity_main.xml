@@ -11,29 +11,35 @@
 
     <EditText
         android:id="@+id/nameET"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/minWidthET"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/defMargin"
         android:autofillHints=""
         android:hint="@string/nameET_hint"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:minWidth="@dimen/minWidthET"
+        android:minHeight="@dimen/minHeightET"
+        android:padding="@dimen/defPadding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <EditText
         android:id="@+id/phoneET"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/defMargin"
         android:autofillHints=""
         android:hint="@string/phoneET_hint"
         android:inputType="phone"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:minWidth="@dimen/minWidthET"
+        android:minHeight="@dimen/minHeightET"
+        android:padding="@dimen/defPadding"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameET" />
 
     <Button
         android:id="@+id/saveBTN"
-        android:layout_width="@dimen/minWidthET"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/defMargin"
         android:text="@string/saveBTN_text"
@@ -42,26 +48,25 @@
 
     <Button
         android:id="@+id/delBTN"
-        android:layout_width="@dimen/minWidthET"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/defMargin"
         android:text="@string/delBTN_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/saveBTN"
         app:layout_constraintTop_toBottomOf="@+id/phoneET" />
 
-    <TextView
-        android:id="@+id/contactsTV"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contactsRV"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/defMargin"
-        android:hint="@string/toolbarTitle"
-        android:lineSpacingExtra="8sp"
         android:padding="@dimen/defPadding"
-        android:scrollbars="vertical"
         android:textSize="@dimen/textSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/saveBTN" />
+        app:layout_constraintTop_toBottomOf="@+id/saveBTN"
+        tools:listitem="@layout/contact_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

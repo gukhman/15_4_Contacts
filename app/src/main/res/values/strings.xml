@@ -6,4 +6,5 @@
     <string name="phoneET_hint">Номер телефона</string>
     <string name="saveBTN_text">Сохранить</string>
     <string name="delBTN_text">Удалить всё</string>
+    <string name="nameET_CD">Поле ввода имени контакта</string>
 </resources>
